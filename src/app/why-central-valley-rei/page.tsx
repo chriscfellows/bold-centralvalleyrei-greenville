@@ -103,10 +103,10 @@ export default async function WhyCentralValleyREIPage() {
         />
 
         <AboutSection
-          headline="Your Trusted, Licensed Real Estate Experts in Greenville"
+          headline="Your Trusted Local Cash Home Buyer in Greenville, SC"
           body={ABOUT_BODY}
           imageUrl="/images/greenville-home-about.jpg"
-          imageAlt="Florida home sold by Central Valley REI Greenville cash buyers"
+          imageAlt="Greenville SC home sold by Central Valley REI cash buyers"
           variant="image-left"
         />
 
@@ -130,10 +130,10 @@ export default async function WhyCentralValleyREIPage() {
 
         <CTASection
           headline="Have Questions? We are Happy to Help."
-          subheadline="Our licensed Greenville real estate team is available to answer any questions you have about the process."
+          subheadline="Our team is available to answer any questions you have about the process."
           ctaText="Contact Us Today"
           ctaHref="/contact-us"
-          phone={SITE_CONFIG.phone}
+          phone={siteConfig.phone}
         />
       </main>
       <SiteFooter config={siteConfig} navItems={NAV_ITEMS} />

@@ -86,7 +86,7 @@ export default async function BlogPage() {
           subheadline="Get a fair cash offer in 24 hours. No repairs. No fees. Close on your schedule."
           ctaText="Get My Free Cash Offer"
           ctaHref="/contact-us"
-          phone={SITE_CONFIG.phone}
+          phone={siteConfig.phone}
         />
       </main>
       <SiteFooter config={siteConfig} navItems={NAV_ITEMS} />

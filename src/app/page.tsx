@@ -96,7 +96,7 @@ export default async function HomePage() {
     name: "Central Valley REI Greenville Cash Home Buyers",
     description: SEO.home.description,
     url: SEO.home.canonical,
-    telephone: SITE_CONFIG.phone,
+    telephone: siteConfig.phone,
     address: {
       "@type": "PostalAddress",
       addressLocality: "Greenville",
@@ -189,7 +189,7 @@ export default async function HomePage() {
           subheadline="Get a fair, no-obligation cash offer in 24 hours. No repairs. No fees. No commissions. Close on your schedule."
           ctaText="Get My Free Cash Offer"
           ctaHref="/contact-us"
-          phone={SITE_CONFIG.phone}
+          phone={siteConfig.phone}
         />
       </main>
 

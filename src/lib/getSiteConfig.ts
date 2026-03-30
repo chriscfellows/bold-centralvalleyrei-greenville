@@ -26,6 +26,8 @@ export async function getSiteConfig(): Promise<SiteConfig> {
     const websiteConfig = await getWebsiteConfig();
     return {
       ...SITE_CONFIG,
+      // Phone — DB-driven with static fallback
+      phone: websiteConfig?.phone ?? SITE_CONFIG.phone,
       // S3 asset URLs
       logoUrl: websiteConfig?.logoUrl ?? SITE_CONFIG.logoUrl,
       faviconUrl: websiteConfig?.faviconUrl ?? SITE_CONFIG.faviconUrl,

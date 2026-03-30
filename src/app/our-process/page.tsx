@@ -129,7 +129,7 @@ export default async function OurProcessPage() {
           subheadline="Our team is available to walk you through every step of the process."
           ctaText="Contact Us Today"
           ctaHref="/contact-us"
-          phone={SITE_CONFIG.phone}
+          phone={siteConfig.phone}
         />
       </main>
       <SiteFooter config={siteConfig} navItems={NAV_ITEMS} />
