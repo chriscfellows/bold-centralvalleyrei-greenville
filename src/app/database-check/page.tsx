@@ -3,7 +3,7 @@
  * Prints all core values returned from the BLP database for this website.
  * Helps debug missing logo, favicon, analytics, and other DB-driven fields.
  */
-import { getWebsiteConfig } from "@boldstreet/shared";
+import { getWebsiteConfig, getClientConfig } from "@boldstreet/shared";
 import { getSiteConfig } from "@/lib/getSiteConfig";
 import { SITE_CONFIG, WEBSITE_ID } from "@/config/site";
 
@@ -16,6 +16,8 @@ export default async function DatabaseCheckPage() {
   let rawError: string | null = null;
   let siteConfig: Record<string, unknown> | null = null;
   let siteConfigError: string | null = null;
+  let clientConfig: Record<string, unknown> | null = null;
+  let clientError: string | null = null;
 
   // 1. Raw DB query
   try {
@@ -23,6 +25,17 @@ export default async function DatabaseCheckPage() {
     rawConfig = result ? (result as unknown as Record<string, unknown>) : null;
   } catch (err: unknown) {
     rawError = err instanceof Error ? err.message : String(err);
+  }
+
+  // 1b. Client config query
+  try {
+    const clientId = rawConfig?.clientId as number | undefined;
+    if (clientId) {
+      const result = await getClientConfig(clientId);
+      clientConfig = result ? (result as unknown as Record<string, unknown>) : null;
+    }
+  } catch (err: unknown) {
+    clientError = err instanceof Error ? err.message : String(err);
   }
 
   // 2. getSiteConfig (merged)
@@ -42,10 +55,14 @@ export default async function DatabaseCheckPage() {
   const coreDbFields = [
     "id", "name", "clientId", "url", "domain", "customDomain",
     "logoUrl", "faviconUrl", "logoData",
-    "phone", "location", "metroArea", "companyType",
+    "phone", "location", "metroArea",
     "googleAdsConversionId", "googleAdsConversionLabel",
     "gtmContainerId", "ga4MeasurementId", "metaPixelId",
     "primaryColor", "blogEnabled", "isActive",
+  ];
+
+  const coreClientFields = [
+    "id", "name", "companyType", "isActive",
   ];
 
   const coreSiteConfigFields = [
@@ -108,6 +125,40 @@ export default async function DatabaseCheckPage() {
           <tbody>
             {coreDbFields.map((field) => {
               const val = rawConfig![field];
+              const display = val === null ? "NULL" : val === undefined ? "UNDEFINED" : String(val);
+              const color = val === null || val === undefined ? "red" : val === "" ? "orange" : "green";
+              return (
+                <tr key={field}>
+                  <td style={{ padding: "6px 10px", border: "1px solid #ddd", fontWeight: "bold" }}>{field}</td>
+                  <td style={{ padding: "6px 10px", border: "1px solid #ddd", color, wordBreak: "break-all" }}>{display}</td>
+                  <td style={{ padding: "6px 10px", border: "1px solid #ddd", color: "#888" }}>{typeof val}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      )}
+
+      {/* Raw Client Config */}
+      <h2 style={{ fontSize: "1.2rem", marginTop: "2rem", borderBottom: "1px solid #ccc", paddingBottom: "0.5rem" }}>
+        Raw getClientConfig() Result (clients table)
+      </h2>
+      {clientError ? (
+        <p style={{ color: "red", fontWeight: "bold" }}>ERROR: {clientError}</p>
+      ) : clientConfig === null ? (
+        <p style={{ color: "red", fontWeight: "bold" }}>Returned NULL — no client row found (clientId from website: {rawConfig?.clientId as number ?? "N/A"})</p>
+      ) : (
+        <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "0.5rem" }}>
+          <thead>
+            <tr style={{ background: "#f0f0f0" }}>
+              <th style={{ textAlign: "left", padding: "6px 10px", border: "1px solid #ddd" }}>Field</th>
+              <th style={{ textAlign: "left", padding: "6px 10px", border: "1px solid #ddd" }}>Value</th>
+              <th style={{ textAlign: "left", padding: "6px 10px", border: "1px solid #ddd" }}>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            {coreClientFields.map((field) => {
+              const val = clientConfig![field];
               const display = val === null ? "NULL" : val === undefined ? "UNDEFINED" : String(val);
               const color = val === null || val === undefined ? "red" : val === "" ? "orange" : "green";
               return (

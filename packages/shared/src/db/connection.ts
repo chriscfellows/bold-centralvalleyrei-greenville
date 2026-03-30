@@ -15,6 +15,7 @@ import {
   blogPosts,
   testimonials,
   type Website,
+  type Client,
   type BlogPost,
   type Testimonial,
 } from "@boldstreet/db-schema";
@@ -54,6 +55,26 @@ export async function getWebsiteConfig(): Promise<Website | null> {
     return rows[0] ?? null;
   } catch (err) {
     console.error("[DB] Failed to load website config:", err);
+    return null;
+  }
+}
+
+/**
+ * Load client config from BLP's clients table using the clientId from the website row.
+ * Returns the client row so getSiteConfig can read company_type.
+ */
+export async function getClientConfig(clientId: number): Promise<Client | null> {
+  try {
+    const db = getDb();
+    const rows = await db
+      .select()
+      .from(clients)
+      .where(eq(clients.id, clientId))
+      .limit(1);
+
+    return rows[0] ?? null;
+  } catch (err) {
+    console.error("[DB] Failed to load client config:", err);
     return null;
   }
 }

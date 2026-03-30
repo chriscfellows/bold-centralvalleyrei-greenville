@@ -8,7 +8,7 @@ export { submitLead, handleLeadError } from "./services/lead-submission";
 export type { LeadIngestionMessage, LeadIngestionResult, LeadSubmissionError } from "./services/lead-submission";
 
 // Database connection (read-only for config/blog, narrow write for notifications)
-export { getDb, getWebsiteConfig, getBlogPosts, getBlogPost, getTestimonials } from "./db/connection";
+export { getDb, getWebsiteConfig, getClientConfig, getBlogPosts, getBlogPost, getTestimonials } from "./db/connection";
 
 // Spam protection middleware
 export { checkSpamProtection } from "./middleware/spam-protection";

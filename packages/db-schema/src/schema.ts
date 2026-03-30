@@ -18,6 +18,7 @@ import {
 export const clients = pgTable("clients", {
   id: serial("id").primaryKey(),
   name: varchar("name", { length: 255 }).notNull(),
+  companyType: varchar("company_type", { length: 50 }).default("realtor"),
   isActive: boolean("is_active").default(true).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
@@ -46,7 +47,6 @@ export const websites = pgTable("websites", {
   location: varchar("location", { length: 500 }),
   metroArea: varchar("metro_area", { length: 255 }),
   phone: varchar("phone", { length: 50 }),
-  companyType: varchar("company_type", { length: 50 }).default("realtor"),
   blogEnabled: boolean("blog_enabled").default(false),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
