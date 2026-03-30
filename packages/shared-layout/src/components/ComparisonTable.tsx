@@ -1,7 +1,7 @@
 /**
  * ComparisonTable — Server component.
  * White background. Two-column comparison matching reference site.
- * LPT column has dark #0F172A header, Traditional column is light.
+ * Cash offer column has dark #0F172A header, Traditional column is light.
  */
 import type { ComparisonRow } from "../types/index";
 
@@ -26,7 +26,7 @@ const DEFAULT_ROWS: ComparisonRow[] = [
 export function ComparisonTable({
   headline,
   subheadline = "See why selling to us is often the best choice for homeowners who need to sell fast.",
-  cashOfferLabel = "LPT Realty (Cash Offer)",
+  cashOfferLabel = "Cash Offer",
   traditionalLabel = "Traditional Agent",
   rows = DEFAULT_ROWS,
 }: ComparisonTableProps) {

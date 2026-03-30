@@ -136,7 +136,7 @@ export const SEO = {
       "Learn how to sell your Greenville SC home for cash in 3 simple steps. No repairs, no fees, no commissions. Get your offer in 24 hours and close in 7 days.",
     canonical: "https://sellgreenvillehomefast.com/our-process",
   },
-  whyLptRealty: {
+  whyCentralValleyRei: {
     title: "Why Central Valley REI | Direct Cash Home Buyers in Greenville SC",
     description:
       "Discover why Greenville SC homeowners choose Central Valley REI over traditional agents and investors. Direct cash buyer, fair offers, zero fees, and a guaranteed closing.",

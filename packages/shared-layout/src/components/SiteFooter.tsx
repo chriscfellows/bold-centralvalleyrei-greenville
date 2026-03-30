@@ -29,7 +29,7 @@ export function SiteFooter({ config, navItems }: SiteFooterProps) {
               />
             ) : (
               <div className="flex flex-col leading-tight">
-                <span className="font-bold text-white text-lg tracking-wide">LPT Realty</span>
+                <span className="font-bold text-white text-lg tracking-wide">{config.siteName}</span>
                 <span className="text-xs text-white/70 tracking-widest uppercase">
                   {config.metroArea} Cash Buyers
                 </span>
@@ -86,7 +86,7 @@ export function SiteFooter({ config, navItems }: SiteFooterProps) {
 
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-white/50">
-          <p>&copy; {year} LPT Realty. All rights reserved.</p>
+          <p>&copy; {year} {config.siteName}. All rights reserved.</p>
           <div className="flex gap-6">
             <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="/terms" className="hover:text-white transition-colors">Terms of Use</a>

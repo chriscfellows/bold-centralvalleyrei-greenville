@@ -15,9 +15,9 @@ import { SITE_CONFIG, NAV_ITEMS, COMPARISON_ROWS, SEO, WEBSITE_ID } from "@/conf
 import { getSiteConfig } from "@/lib/getSiteConfig";
 
 export const metadata: Metadata = {
-  title: SEO.whyLptRealty.title,
-  description: SEO.whyLptRealty.description,
-  alternates: { canonical: SEO.whyLptRealty.canonical },
+  title: SEO.whyCentralValleyRei.title,
+  description: SEO.whyCentralValleyRei.description,
+  alternates: { canonical: SEO.whyCentralValleyRei.canonical },
 };
 
 export const dynamic = "force-dynamic";

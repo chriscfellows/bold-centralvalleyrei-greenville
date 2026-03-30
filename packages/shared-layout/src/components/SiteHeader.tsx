@@ -31,7 +31,7 @@ export function SiteHeader({ config, navItems, currentPath }: SiteHeaderProps) {
               />
             ) : (
               <div className="flex flex-col leading-tight">
-                <span className="font-bold text-[#0F172A] text-lg tracking-wide">LPT Realty</span>
+                <span className="font-bold text-[#0F172A] text-lg tracking-wide">{config.siteName}</span>
                 <span className="text-xs text-[#0F172A]/70 tracking-widest uppercase">
                   {config.metroArea} Cash Buyers
                 </span>

@@ -1,7 +1,7 @@
 /**
  * AboutSection — Server component.
- * Dark #0F172A background. Circular house photo on left, copy on right.
- * LPT badge below copy. Matches reference site.
+ * Dark #0F172A background. Circular photo on one side, copy on the other.
+ * Badge below copy shows investor headshot with configurable label text.
  */
 interface AboutSectionProps {
   headline: string;
@@ -10,6 +10,9 @@ interface AboutSectionProps {
   imageAlt?: string;
   variant?: "image-left" | "image-right" | "centered";
   stats?: { value: string; label: string }[];
+  badgeImageUrl?: string;
+  badgeLabel?: string;
+  badgeSublabel?: string;
 }
 
 export function AboutSection({
@@ -17,18 +20,21 @@ export function AboutSection({
   body,
   imageUrl,
   imageAlt,
+  badgeImageUrl = "/images/investor-badge.jpg",
+  badgeLabel = "Local Cash Buyer",
+  badgeSublabel = "Direct & Trusted",
 }: AboutSectionProps) {
   return (
     <section className="bg-[#0F172A] py-16 lg:py-24" aria-labelledby="about-heading">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left: Circular house photo */}
+          {/* Left: Circular photo */}
           <div className="flex justify-center">
             <div className="w-72 h-72 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-white/10 shadow-2xl">
               {imageUrl ? (
                 <img
                   src={imageUrl}
-                  alt={imageAlt || "Florida home"}
+                  alt={imageAlt || "About us"}
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
@@ -51,14 +57,19 @@ export function AboutSection({
               <p key={i} className="text-white/75 leading-relaxed">{para}</p>
             ))}
 
-            {/* LPT badge */}
+            {/* Badge — investor headshot with label */}
             <div className="flex items-center gap-4 pt-4">
-              <div className="w-14 h-14 rounded-full border-2 border-white/30 flex items-center justify-center flex-shrink-0">
-                <span className="text-white font-bold text-xs tracking-wider">lpt</span>
+              <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-white/30 flex-shrink-0">
+                <img
+                  src={badgeImageUrl}
+                  alt={badgeLabel}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
               </div>
               <div>
-                <p className="text-white font-semibold text-sm">Licensed Real Estate</p>
-                <p className="text-white/60 text-sm">Professionals</p>
+                <p className="text-white font-semibold text-sm">{badgeLabel}</p>
+                <p className="text-white/60 text-sm">{badgeSublabel}</p>
               </div>
             </div>
           </div>
