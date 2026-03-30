@@ -82,7 +82,7 @@ export default async function ContactUsPage() {
                     {siteConfig.phone}
                   </a>
                   <p className="text-sm text-gray-500">
-                    Available Monday through Saturday, 8am to 7pm EST. Leave a voicemail and we will call you back the same day.
+                    Available Monday through Saturday, 8am to 7pm EST.
                   </p>
                 </div>
                 <div>
