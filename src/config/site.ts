@@ -8,7 +8,7 @@
 import type { SiteConfig, NavItem, ProcessStep, Situation, ComparisonRow } from "@boldstreet/shared-layout";
 
 export const SITE_CONFIG: SiteConfig = {
-  siteName: "Central Valley REI Greenville Cash Home Buyers",
+  siteName: "Central Valley REI",
   metroArea: "Greenville",
   serviceArea: "Greenville, Spartanburg & Upstate SC",
   location: "Greenville, SC",
