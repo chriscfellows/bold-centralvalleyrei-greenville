@@ -16,9 +16,7 @@ export const SITE_CONFIG: SiteConfig = {
   domain: process.env.NEXT_PUBLIC_DOMAIN || "sellgreenvillehomefast.com",
   gtmContainerId: "",
   googleAdsConversionId: "",
-  // Fallback logo — used when no logo has been uploaded to S3 via BLP admin UI yet.
-  // At runtime, getSiteConfig() replaces this with the S3 URL from websites.logo_url.
-  logoUrl: "/images/centralvalleyrei-logo.png",
+
   companyType: "cash_buyer",
 };
 
