@@ -18,6 +18,7 @@ export interface SiteConfig {
   logoUrl?: string;
   faviconUrl?: string;
   primaryColor?: string;
+  companyType?: string;
 }
 
 export interface NavItem {

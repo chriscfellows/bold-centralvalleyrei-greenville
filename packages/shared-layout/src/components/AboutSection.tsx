@@ -1,8 +1,16 @@
 /**
  * AboutSection — Server component.
  * Dark #0F172A background. Circular photo on one side, copy on the other.
- * Badge below copy shows investor headshot with configurable label text.
+ * Badge below copy shows investor headshot with company name and type-driven sublabel.
+ *   companyType="realtor"     → "Licensed Real Estate Agents"
+ *   companyType="cash_buyer"  → "Direct Cash Buyers"
  */
+
+const SUBLABEL_MAP: Record<string, string> = {
+  realtor: "Licensed Real Estate Agents",
+  cash_buyer: "Direct Cash Buyers",
+};
+
 interface AboutSectionProps {
   headline: string;
   body: string[];
@@ -12,6 +20,7 @@ interface AboutSectionProps {
   stats?: { value: string; label: string }[];
   badgeImageUrl?: string;
   badgeLabel: string;
+  companyType?: string;
   badgeSublabel?: string;
 }
 
@@ -22,8 +31,12 @@ export function AboutSection({
   imageAlt,
   badgeImageUrl = "/images/investor-badge.jpg",
   badgeLabel,
-  badgeSublabel = "Direct & Trusted",
+  companyType,
+  badgeSublabel,
 }: AboutSectionProps) {
+  const sublabel =
+    badgeSublabel ?? SUBLABEL_MAP[companyType ?? ""] ?? "Licensed Real Estate Agents";
+
   return (
     <section className="bg-[#0F172A] py-16 lg:py-24" aria-labelledby="about-heading">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -69,7 +82,7 @@ export function AboutSection({
               </div>
               <div>
                 <p className="text-white font-semibold text-sm">{badgeLabel}</p>
-                <p className="text-white/60 text-sm">{badgeSublabel}</p>
+                <p className="text-white/60 text-sm">{sublabel}</p>
               </div>
             </div>
           </div>

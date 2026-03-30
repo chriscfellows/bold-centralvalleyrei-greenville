@@ -37,6 +37,8 @@ export async function getSiteConfig(): Promise<SiteConfig> {
       googleAdsConversionLabel: websiteConfig?.googleAdsConversionLabel ?? SITE_CONFIG.googleAdsConversionLabel,
       ga4MeasurementId: websiteConfig?.ga4MeasurementId ?? SITE_CONFIG.ga4MeasurementId,
       metaPixelId: websiteConfig?.metaPixelId ?? SITE_CONFIG.metaPixelId,
+      // Company type — determines badge sublabel (realtor vs cash_buyer)
+      companyType: websiteConfig?.companyType ?? SITE_CONFIG.companyType,
     };
   } catch {
     // On any DB error, return static config as fallback
