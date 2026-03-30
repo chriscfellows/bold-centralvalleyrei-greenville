@@ -48,6 +48,7 @@ export const websites = pgTable("websites", {
   metroArea: varchar("metro_area", { length: 255 }),
   phone: varchar("phone", { length: 50 }),
   blogEnabled: boolean("blog_enabled").default(false),
+  lastConfigFetch: timestamp("last_config_fetch"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
