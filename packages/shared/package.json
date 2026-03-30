@@ -1,0 +1,20 @@
+{
+  "name": "@boldstreet/shared",
+  "version": "1.0.0",
+  "description": "Shared utilities, services, and middleware for Bold Street lead gen sites",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@boldstreet/db-schema": "file:../db-schema",
+    "@sendgrid/mail": "^8.1.6",
+    "bullmq": "^5.71.0",
+    "drizzle-orm": "^0.44.7",
+    "postgres": "^3.4.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

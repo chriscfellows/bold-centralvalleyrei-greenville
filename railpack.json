@@ -1,0 +1,8 @@
+{
+  "build": {
+    "cmd": "pnpm install && pnpm build"
+  },
+  "deploy": {
+    "cmd": "pnpm start"
+  }
+}

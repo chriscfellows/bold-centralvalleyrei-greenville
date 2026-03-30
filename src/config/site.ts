@@ -1,0 +1,151 @@
+/**
+ * Greenville, SC site configuration — Central Valley REI.
+ * Central Valley REI is the direct buyer — first-person buyer language is correct here.
+ * All location-specific content is defined here — components are generic.
+ * Spec ref: Must Not #1 (no hardcoded location copy in components)
+ */
+
+import type { SiteConfig, NavItem, ProcessStep, Situation, ComparisonRow } from "@boldstreet/shared-layout";
+
+export const SITE_CONFIG: SiteConfig = {
+  siteName: "Central Valley REI Greenville Cash Home Buyers",
+  metroArea: "Greenville",
+  serviceArea: "Greenville, Spartanburg & Upstate SC",
+  location: "Greenville, SC",
+  phone: "864-000-0000",
+  domain: process.env.NEXT_PUBLIC_DOMAIN || "sellgreenvillehomefast.com",
+  gtmContainerId: "",
+  googleAdsConversionId: "",
+  // Fallback logo — used when no logo has been uploaded to S3 via BLP admin UI yet.
+  // At runtime, getSiteConfig() replaces this with the S3 URL from websites.logo_url.
+  logoUrl: "/images/centralvalleyrei-logo.png",
+};
+
+/**
+ * Returns the website ID at runtime from the WEBSITE_ID env var.
+ * Must be called inside async server functions — NOT at module level —
+ * so that Railway's runtime env var is used instead of the build-time value.
+ */
+export function WEBSITE_ID(): number {
+  return parseInt(process.env.WEBSITE_ID || "5");
+}
+
+export const NAV_ITEMS: NavItem[] = [
+  { label: "Home", href: "/" },
+  { label: "Our Process", href: "/our-process" },
+  { label: "Why Central Valley REI", href: "/why-central-valley-rei" },
+  { label: "Contact", href: "/contact-us" },
+  { label: "Blog", href: "/blog" },
+];
+
+export const PROCESS_STEPS: ProcessStep[] = [
+  {
+    number: 1,
+    title: "Tell Us About Your Property",
+    description:
+      "Fill out our simple online form or give us a call. It only takes a few minutes, and your information is kept completely confidential.",
+  },
+  {
+    number: 2,
+    title: "We'll Contact You with an Offer",
+    description:
+      "We'll review the details and present you with a fair, written, no-obligation cash offer for your Greenville home — often within 24 hours.",
+  },
+  {
+    number: 3,
+    title: "Close On Your Schedule",
+    description:
+      "If you accept, we can close in as little as 7 days. We work on your timeline so you can move forward with your life.",
+  },
+];
+
+export const SITUATIONS: Situation[] = [
+  { title: "Avoiding Foreclosure", icon: "🏚️" },
+  { title: "Inherited Property", icon: "🏠" },
+  { title: "Divorce", icon: "📋" },
+  { title: "Relocating Fast", icon: "🚚" },
+  { title: "Tired Landlord", icon: "🔑" },
+  { title: "Needs Major Repairs", icon: "🔨" },
+  { title: "Behind on Payments", icon: "💰" },
+  { title: "Downsizing", icon: "📦" },
+  { title: "Probate", icon: "⚖️" },
+  { title: "Vacant Property", icon: "🏗️" },
+  { title: "Job Loss", icon: "💼" },
+  { title: "Medical Bills", icon: "🏥" },
+];
+
+export const COMPARISON_ROWS: ComparisonRow[] = [
+  { feature: "Closing Time", cashOffer: "As little as 7 days", traditional: "30–90+ days" },
+  { feature: "Commissions / Fees", cashOffer: "None — we pay all costs", traditional: "6% + closing costs" },
+  { feature: "Repairs Required", cashOffer: "None — we buy as-is", traditional: "Often required before listing" },
+  { feature: "Appraisal / Financing", cashOffer: "No appraisal needed", traditional: "Contingent on appraisal & financing" },
+  { feature: "Showings", cashOffer: "One quick visit from us", traditional: "Multiple open houses" },
+  { feature: "Closing Guarantee", cashOffer: "YES — guaranteed", traditional: "NO — deal can fall through" },
+];
+
+export const HERO_CONTENT = {
+  headline: "Sell Your Greenville Home Fast — Get a Fair Cash Offer in 24 Hours",
+  subheadline:
+    "Central Valley REI buys houses for cash in any condition across Greenville, Spartanburg, and Upstate South Carolina. No repairs, no fees, no commissions. Close in as little as 7 days.",
+  trustPoints: [
+    "No Repairs Required",
+    "No Commissions or Fees",
+    "Close in 7 Days",
+    "Direct Cash Buyer",
+    "100% No-Obligation Offer",
+  ],
+};
+
+export const ABOUT_CONTENT = {
+  headline: "Your Trusted Local Cash Home Buyer in Greenville, SC",
+  body: [
+    "We are not just another cash home buying company. Central Valley REI is a local, experienced real estate investment company that has been buying homes directly from homeowners across Greenville, Spartanburg, and Upstate South Carolina.",
+    "We have a deep understanding of the Greenville real estate market and are committed to making you a fair offer based on real local data. We buy your home directly — no middlemen, no agents, no commissions.",
+    "Our goal is to provide you with a fair and transparent cash offer on your house. No pressure, no obligation — just a straightforward conversation about your situation and a fast, guaranteed close.",
+  ],
+  stats: [
+    { value: "7 Days", label: "Average Close Time" },
+    { value: "100%", label: "No-Obligation Offers" },
+    { value: "$0", label: "Fees or Commissions" },
+    { value: "Direct", label: "Cash Buyer" },
+  ],
+};
+
+export const SEO = {
+  home: {
+    title: "Sell My House Fast Greenville SC | Cash Offer in 24 Hours | Central Valley REI",
+    description:
+      "Get a fair cash offer for your Greenville SC home in 24 hours. Central Valley REI buys houses as-is — no repairs, no fees, no commissions. Serving Greenville, Spartanburg & Upstate SC. Call 864-000-0000.",
+    canonical: "https://sellgreenvillehomefast.com",
+  },
+  howItWorks: {
+    title: "How It Works | Sell Your Greenville SC House Fast | Central Valley REI",
+    description:
+      "Learn how to sell your Greenville SC home for cash in 3 simple steps. No repairs, no fees, no commissions. Get your offer in 24 hours and close in 7 days.",
+    canonical: "https://sellgreenvillehomefast.com/how-it-works",
+  },
+  blog: {
+    title: "Greenville SC Real Estate Blog | Central Valley REI Cash Buyers",
+    description:
+      "Expert advice on selling your Greenville SC home fast. Tips on avoiding foreclosure, handling inherited properties, and getting the best cash offer in Greenville, Spartanburg, and Upstate South Carolina.",
+    canonical: "https://sellgreenvillehomefast.com/blog",
+  },
+  ourProcess: {
+    title: "Our Process | How to Sell Your Greenville SC House for Cash | Central Valley REI",
+    description:
+      "Learn how to sell your Greenville SC home for cash in 3 simple steps. No repairs, no fees, no commissions. Get your offer in 24 hours and close in 7 days.",
+    canonical: "https://sellgreenvillehomefast.com/our-process",
+  },
+  whyLptRealty: {
+    title: "Why Central Valley REI | Direct Cash Home Buyers in Greenville SC",
+    description:
+      "Discover why Greenville SC homeowners choose Central Valley REI over traditional agents and investors. Direct cash buyer, fair offers, zero fees, and a guaranteed closing.",
+    canonical: "https://sellgreenvillehomefast.com/why-central-valley-rei",
+  },
+  contactUs: {
+    title: "Contact Us | Get Your Cash Offer | Central Valley REI Greenville SC",
+    description:
+      "Ready to sell your Greenville SC home fast? Contact Central Valley REI today for a free, no-obligation cash offer. We respond within 24 hours. Call 864-000-0000.",
+    canonical: "https://sellgreenvillehomefast.com/contact-us",
+  },
+};
