@@ -11,7 +11,7 @@ interface AboutSectionProps {
   variant?: "image-left" | "image-right" | "centered";
   stats?: { value: string; label: string }[];
   badgeImageUrl?: string;
-  badgeLabel?: string;
+  badgeLabel: string;
   badgeSublabel?: string;
 }
 
@@ -21,7 +21,7 @@ export function AboutSection({
   imageUrl,
   imageAlt,
   badgeImageUrl = "/images/investor-badge.jpg",
-  badgeLabel = "Local Cash Buyer",
+  badgeLabel,
   badgeSublabel = "Direct & Trusted",
 }: AboutSectionProps) {
   return (

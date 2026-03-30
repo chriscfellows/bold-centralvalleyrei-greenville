@@ -108,6 +108,7 @@ export default async function WhyCentralValleyREIPage() {
           imageUrl="/images/greenville-home-about.jpg"
           imageAlt="Greenville SC home sold by Central Valley REI cash buyers"
           variant="image-left"
+          badgeLabel={siteConfig.siteName}
         />
 
         <section className="bg-[#F1F5F9] py-16 lg:py-24">

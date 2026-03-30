@@ -173,6 +173,7 @@ export default async function HomePage() {
           variant="image-right"
           imageUrl="/images/greenville-home-about.jpg"
           imageAlt="Greenville SC neighborhood home"
+          badgeLabel={siteConfig.siteName}
         />
 
         {/* Testimonials — DB-driven with static fallback */}
