@@ -60,7 +60,7 @@ export default async function TermsPage() {
 
           <h2>7. Governing Law and Jurisdiction</h2>
           <p>
-            All matters relating to the website and these Terms, and any dispute or claim arising therefrom or related thereto, shall be governed by and construed in accordance with the internal laws of the State of Florida without giving effect to any choice or conflict of law provision or rule.
+            All matters relating to the website and these Terms, and any dispute or claim arising therefrom or related thereto, shall be governed by and construed in accordance with the internal laws of the State of Arizona without giving effect to any choice or conflict of law provision or rule.
           </p>
 
           <h2>8. Contact Information</h2>
