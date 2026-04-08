@@ -4,7 +4,7 @@ import { SiteHeader, SiteFooter } from "@boldstreet/shared-layout";
 import { getNavItems } from "@/config/site";
 import { getSiteConfig } from "@/lib/getSiteConfig";
 
-export const revalidate = 600;
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteConfig = await getSiteConfig();
