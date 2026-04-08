@@ -26,7 +26,7 @@ export default async function TermsPage() {
           <p className="text-sm text-gray-500">Last Updated: March 2026</p>
 
           <p>
-            These Terms of Use ("Terms") govern your access to and use of this website, operated by Bold Street, Inc. ("Company", "we", "us", or "our"). By accessing or using the website, you agree to be bound by these Terms and our Privacy Policy. If you do not agree to these Terms, do not use our website.
+            {`These Terms of Use ("Terms") govern your access to and use of this website, operated by Bold Street, Inc. ("Company", "we", "us", or "our"), for ${siteConfig.siteName}. By accessing or using the website, you agree to be bound by these Terms and our Privacy Policy. If you do not agree to these Terms, do not use our website.`}
           </p>
 
           <h2>1. Website Purpose and Services</h2>
@@ -59,7 +59,7 @@ export default async function TermsPage() {
 
           <h2>6. Limitation of Liability</h2>
           <p>
-            IN NO EVENT WILL BOLD STREET, INC., ITS AFFILIATES, OR THEIR LICENSORS, SERVICE PROVIDERS, EMPLOYEES, AGENTS, OFFICERS, OR DIRECTORS BE LIABLE FOR DAMAGES OF ANY KIND, UNDER ANY LEGAL THEORY, ARISING OUT OF OR IN CONNECTION WITH YOUR USE, OR INABILITY TO USE, THE WEBSITE, INCLUDING ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES.
+            {`IN NO EVENT WILL BOLD STREET, INC., ${siteConfig.siteName.toUpperCase()}, ITS AFFILIATES, OR THEIR LICENSORS, SERVICE PROVIDERS, EMPLOYEES, AGENTS, OFFICERS, OR DIRECTORS BE LIABLE FOR DAMAGES OF ANY KIND, UNDER ANY LEGAL THEORY, ARISING OUT OF OR IN CONNECTION WITH YOUR USE, OR INABILITY TO USE, THE WEBSITE, INCLUDING ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES.`}
           </p>
 
           <h2>7. Governing Law and Jurisdiction</h2>

@@ -26,7 +26,7 @@ export default async function PrivacyPage() {
           <p className="text-sm text-gray-500">Last Updated: March 2026</p>
           
           <p>
-            Bold Street, Inc. ("Company", "we", "us", or "our") respects your privacy and is committed to protecting it through our compliance with this policy. This Privacy Policy describes the types of information we may collect from you or that you may provide when you visit this website and our practices for collecting, using, maintaining, protecting, and disclosing that information.
+            {`Bold Street, Inc. ("Company", "we", "us", or "our") and ${siteConfig.siteName} respect your privacy and is committed to protecting it through our compliance with this policy. This Privacy Policy describes the types of information we may collect from you or that you may provide when you visit this website and our practices for collecting, using, maintaining, protecting, and disclosing that information.`}
           </p>
 
           <h2>1. Information We Collect</h2>
@@ -48,7 +48,7 @@ export default async function PrivacyPage() {
 
           <h2>3. SMS and Text Message Communications</h2>
           <p>
-            By providing your phone number and submitting our lead form, you expressly consent to receive text messages (SMS) from Bold Street, Inc. and our affiliated local real estate partners regarding your property inquiry. Message and data rates may apply. You may opt-out of receiving text messages at any time by replying "STOP" to any message you receive from us.
+            {`By providing your phone number and submitting our lead form, you expressly consent to receive text messages (SMS) from Bold Street, Inc. and ${siteConfig.siteName} and our affiliated local real estate partners regarding your property inquiry. Message and data rates may apply. You may opt-out of receiving text messages at any time by replying "STOP" to any message you receive from us.`}
           </p>
 
           <h2>4. Disclosure of Your Information</h2>
