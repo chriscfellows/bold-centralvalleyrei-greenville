@@ -53,8 +53,12 @@ export function SiteFooter({ config, navItems }: SiteFooterProps) {
               </div>
             )}
             <p className="text-white/70 text-sm max-w-xs">
-              We provide fair cash offers for homes in {config.metroArea} and surrounding areas.
-              Sell your house fast, as-is, with no fees or commissions.
+              {isRealtor ? (
+                <>{config.siteName} connects {config.websiteName || config.metroArea} homeowners with independent, pre-vetted cash buyers. We do not typically purchase properties directly. Cash buyers are investors who may resell properties for a profit. {config.siteName} may receive a referral fee from the buyer.{" "}
+                <a href="/disclosures" className="underline hover:text-white/60 transition-colors">Full Disclosure</a>.</>
+              ) : (
+                <>We provide fair cash offers for homes in {config.metroArea} and surrounding areas. Sell your house fast, as-is, with no fees or commissions.</>
+              )}
             </p>
           </div>
 

@@ -27,6 +27,8 @@ export interface SiteConfig {
   disclosureCashbuyer?: string;
   brokerageName?: string;
   brokerageLicense?: string;
+  // Website name (from websites.name in DB) — used in footer tagline for realtor sites
+  websiteName?: string;
 }
 
 export interface NavItem {

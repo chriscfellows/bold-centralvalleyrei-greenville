@@ -55,6 +55,8 @@ export async function getSiteConfig(): Promise<SiteConfig> {
       disclosureCashbuyer: clientConfig?.disclosureCashbuyer ?? undefined,
       brokerageName: clientConfig?.brokerageName ?? undefined,
       brokerageLicense: clientConfig?.brokerageLicense ?? undefined,
+      // Website name — from websites.name in DB (used in footer tagline for realtor sites)
+      websiteName: websiteConfig?.name ?? undefined,
     };
   } catch {
     // On any DB error, return static config as fallback
