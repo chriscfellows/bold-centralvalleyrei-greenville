@@ -12,6 +12,23 @@ interface SiteFooterProps {
 
 export function SiteFooter({ config, navItems }: SiteFooterProps) {
   const year = new Date().getFullYear();
+  const isRealtor = config.companyType === "realtor";
+
+  /* Build the credential string: "Owner, License | Brokerage, Broker License" */
+  const credentialParts: string[] = [];
+  if (config.owner) {
+    credentialParts.push(
+      config.ownerLicense ? `${config.owner}, ${config.ownerLicense}` : config.owner
+    );
+  }
+  if (config.brokerageName) {
+    credentialParts.push(
+      config.brokerageLicense
+        ? `${config.brokerageName}, Broker ${config.brokerageLicense}`
+        : config.brokerageName
+    );
+  }
+  const credentialLine = credentialParts.join(" | ");
 
   return (
     <footer className="bg-[#0F172A] text-white">
@@ -84,13 +101,47 @@ export function SiteFooter({ config, navItems }: SiteFooterProps) {
           </div>
         </div>
 
+        {/* Realtor-type disclosure blocks */}
+        {isRealtor && (
+          <div className="space-y-4 pt-6 border-t border-white/10 mb-6">
+            {/* Disclosure block 1 — General disclosure */}
+            <p className="text-xs text-white/40 leading-relaxed">
+              {credentialLine && <>{credentialLine}<br /></>}
+              {config.siteName} connects homeowners with independent, pre-vetted cash buyers.
+              We do not typically purchase properties directly. Cash buyers are investors who may
+              resell properties for a profit. {config.siteName} may receive a referral fee from
+              the buyer.{" "}
+              <a href="/disclosures" className="underline hover:text-white/60 transition-colors">
+                Full Disclosure
+              </a>. Equal Housing Opportunity.
+            </p>
+
+            {/* Disclosure block 2 — Offer request disclosure */}
+            <p className="text-xs text-white/40 leading-relaxed">
+              By requesting an offer, you understand that {config.siteName}
+              {credentialLine ? ` (${credentialLine})` : ""} will connect you with an independent
+              cash buyer from our vetted investor network. Cash buyers are investors who may resell
+              your property for a profit. {config.siteName} may receive a referral fee from the
+              buyer.
+              {config.owner && (
+                <> {config.owner} or affiliated entities may, from time to time, purchase properties
+                directly, in which case this will be disclosed to you in writing.</>
+              )}{" "}
+              You are under no obligation to accept any offer.{" "}
+              <a href="/disclosures" className="underline hover:text-white/60 transition-colors">
+                Full Disclosure
+              </a>.
+            </p>
+          </div>
+        )}
+
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-white/50">
           <p>&copy; {year} {config.siteName}. All rights reserved.</p>
           <div className="flex gap-6">
             <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="/terms" className="hover:text-white transition-colors">Terms of Use</a>
-            {config.companyType === "realtor" && (
+            {isRealtor && (
               <a href="/disclosures" className="hover:text-white transition-colors">Disclosures</a>
             )}
             <a href="/blog" className="hover:text-white transition-colors">Blog</a>
