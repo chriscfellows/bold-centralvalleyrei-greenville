@@ -1,5 +1,5 @@
 /**
- * Greenville, SC — Why Central Valley REI Page (SSR)
+ * Greenville, SC — Why [Company] Page (SSR)
  * URL: /why-central-valley-rei
  */
 import type { Metadata } from "next";
@@ -11,61 +11,67 @@ import {
   CTASection,
   LeadCaptureForm,
 } from "@boldstreet/shared-layout";
-import { SITE_CONFIG, NAV_ITEMS, COMPARISON_ROWS, SEO, WEBSITE_ID } from "@/config/site";
+import { SITE_CONFIG, getNavItems, COMPARISON_ROWS, getSEO, WEBSITE_ID } from "@/config/site";
 import { getSiteConfig } from "@/lib/getSiteConfig";
 
-export const metadata: Metadata = {
-  title: SEO.whyCentralValleyRei.title,
-  description: SEO.whyCentralValleyRei.description,
-  alternates: { canonical: SEO.whyCentralValleyRei.canonical },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getSiteConfig();
+  const seo = getSEO(config.siteName);
+  return {
+    title: seo.whyCompany.title,
+    description: seo.whyCompany.description,
+    alternates: { canonical: seo.whyCompany.canonical },
+  };
+}
 
 export const dynamic = "force-dynamic";
 
-const ABOUT_BODY = [
-  "We are not just another cash home buying company. Central Valley REI is a local, experienced real estate investment company that buys homes directly from homeowners across Greenville, Spartanburg, and Upstate South Carolina.",
-  "This means we have a deep understanding of the Greenville real estate market and are held to the highest ethical standards. Our goal is to provide you with a fair and transparent cash offer on your house.",
-  "We are committed to helping you find the best solution for your unique situation, whether that is a fast cash sale or exploring other options.",
-];
-
-const DIFFERENTIATORS = [
-  {
-    title: "We Are the Direct Buyer",
-    body: "Unlike most cash home buying investors, we are experienced real estate investors. That means we are held to the highest ethical and legal standards in South Carolina — and you can verify our licenses with the state.",
-  },
-  {
-    title: "We Know the Greenville Market",
-    body: "We live and work in Greenville. We know the neighborhoods, the comps, and the local market dynamics — from the Westside to the Valley to Ventura County. You get a fair offer based on real local data.",
-  },
-  {
-    title: "No Fees, No Commissions, No Surprises",
-    body: "When we buy your home, you pay zero agent commissions, zero closing costs, and zero hidden fees. The offer amount is what you receive at closing. Period.",
-  },
-  {
-    title: "You Choose the Closing Date",
-    body: "Need to close in 7 days? We can do that. Need 60 days to find your next home? That works too. We work around your schedule — not ours.",
-  },
-  {
-    title: "No Repairs or Cleaning Required",
-    body: "We buy homes in any condition — fire damage, foundation issues, outdated kitchens, you name it. You do not need to fix a thing before closing.",
-  },
-  {
-    title: "A Guaranteed Sale",
-    body: "Traditional listings fall through all the time. With us, once you accept our offer, the sale is guaranteed. No contingencies, no surprises.",
-  },
-];
-
-export default async function WhyCentralValleyREIPage() {
+export default async function WhyCompanyPage() {
   const siteConfig = await getSiteConfig();
+  const siteName = siteConfig.siteName;
+  const navItems = getNavItems(siteName);
+
+  const ABOUT_BODY = [
+    `We are not just another cash home buying company. ${siteName} is a local, experienced real estate investment company that buys homes directly from homeowners across Greenville, Spartanburg, and Upstate South Carolina.`,
+    "This means we have a deep understanding of the Greenville real estate market and are held to the highest ethical standards. Our goal is to provide you with a fair and transparent cash offer on your house.",
+    "We are committed to helping you find the best solution for your unique situation, whether that is a fast cash sale or exploring other options.",
+  ];
+
+  const DIFFERENTIATORS = [
+    {
+      title: "We Are the Direct Buyer",
+      body: "Unlike most cash home buying investors, we are experienced real estate investors. That means we are held to the highest ethical and legal standards in South Carolina — and you can verify our licenses with the state.",
+    },
+    {
+      title: "We Know the Greenville Market",
+      body: "We live and work in Greenville. We know the neighborhoods, the comps, and the local market dynamics — from the Westside to the Valley to Ventura County. You get a fair offer based on real local data.",
+    },
+    {
+      title: "No Fees, No Commissions, No Surprises",
+      body: "When we buy your home, you pay zero agent commissions, zero closing costs, and zero hidden fees. The offer amount is what you receive at closing. Period.",
+    },
+    {
+      title: "You Choose the Closing Date",
+      body: "Need to close in 7 days? We can do that. Need 60 days to find your next home? That works too. We work around your schedule — not ours.",
+    },
+    {
+      title: "No Repairs or Cleaning Required",
+      body: "We buy homes in any condition — fire damage, foundation issues, outdated kitchens, you name it. You do not need to fix a thing before closing.",
+    },
+    {
+      title: "A Guaranteed Sale",
+      body: "Traditional listings fall through all the time. With us, once you accept our offer, the sale is guaranteed. No contingencies, no surprises.",
+    },
+  ];
 
   return (
     <>
-      <SiteHeader config={siteConfig} navItems={NAV_ITEMS} currentPath="/why-central-valley-rei" />
+      <SiteHeader config={siteConfig} navItems={navItems} currentPath="/why-central-valley-rei" />
       <main>
         <section className="bg-[#0F172A] text-white py-16 lg:py-24">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-3xl lg:text-5xl font-bold mb-4">
-              Why Choose Central Valley REI to Sell Your Greenville Home?
+              Why Choose {siteName} to Sell Your Greenville Home?
             </h1>
             <p className="text-lg text-white/80 max-w-2xl mx-auto">
               Licensed agents. Local experts. Fair cash offers. Zero fees. Here is what makes us different.
@@ -76,7 +82,7 @@ export default async function WhyCentralValleyREIPage() {
         <section className="bg-white py-16 lg:py-24">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-[#0F172A] mb-12 text-center">
-              The Central Valley REI Advantage
+              The {siteName} Advantage
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {DIFFERENTIATORS.map((item, i) => (
@@ -95,9 +101,9 @@ export default async function WhyCentralValleyREIPage() {
         </section>
 
         <ComparisonTable
-          headline="Central Valley REI vs. Traditional Listing"
+          headline={`${siteName} vs. Traditional Listing`}
           subheadline="A side-by-side look at what you can expect from each path."
-          cashOfferLabel="Central Valley REI Cash Offer"
+          cashOfferLabel={`${siteName} Cash Offer`}
           traditionalLabel="Traditional Agent Listing"
           rows={COMPARISON_ROWS}
         />
@@ -106,9 +112,9 @@ export default async function WhyCentralValleyREIPage() {
           headline="Your Trusted Local Cash Home Buyer in Greenville, SC"
           body={ABOUT_BODY}
           imageUrl="/images/greenville-home-about.jpg"
-          imageAlt="Greenville SC home sold by Central Valley REI cash buyers"
+          imageAlt={`Greenville SC home sold by ${siteName} cash buyers`}
           variant="image-left"
-          badgeLabel={siteConfig.siteName}
+          badgeLabel={siteName}
           companyType={siteConfig.companyType}
         />
 
@@ -138,7 +144,7 @@ export default async function WhyCentralValleyREIPage() {
           phone={siteConfig.phone}
         />
       </main>
-      <SiteFooter config={siteConfig} navItems={NAV_ITEMS} />
+      <SiteFooter config={siteConfig} navItems={navItems} />
     </>
   );
 }

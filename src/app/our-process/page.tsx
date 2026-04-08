@@ -1,7 +1,7 @@
 /**
  * Greenville, SC — Our Process Page (SSR)
  * URL: /our-process
- * Central Valley REI is the direct buyer — first-person buyer language throughout.
+ * Direct buyer — first-person buyer language throughout.
  */
 import type { Metadata } from "next";
 import {
@@ -12,14 +12,18 @@ import {
   CTASection,
   LeadCaptureForm,
 } from "@boldstreet/shared-layout";
-import { SITE_CONFIG, NAV_ITEMS, COMPARISON_ROWS, SEO, WEBSITE_ID } from "@/config/site";
+import { SITE_CONFIG, getNavItems, COMPARISON_ROWS, getSEO, WEBSITE_ID } from "@/config/site";
 import { getSiteConfig } from "@/lib/getSiteConfig";
 
-export const metadata: Metadata = {
-  title: SEO.ourProcess.title,
-  description: SEO.ourProcess.description,
-  alternates: { canonical: SEO.ourProcess.canonical },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getSiteConfig();
+  const seo = getSEO(config.siteName);
+  return {
+    title: seo.ourProcess.title,
+    description: seo.ourProcess.description,
+    alternates: { canonical: seo.ourProcess.canonical },
+  };
+}
 
 export const dynamic = "force-dynamic";
 
@@ -46,10 +50,11 @@ const PROCESS_STEPS = [
 
 export default async function OurProcessPage() {
   const siteConfig = await getSiteConfig();
+  const navItems = getNavItems(siteConfig.siteName);
 
   return (
     <>
-      <SiteHeader config={siteConfig} navItems={NAV_ITEMS} currentPath="/our-process" />
+      <SiteHeader config={siteConfig} navItems={navItems} currentPath="/our-process" />
       <main>
         <section className="bg-[#0F172A] text-white py-16 lg:py-24">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
@@ -100,8 +105,8 @@ export default async function OurProcessPage() {
 
         <ComparisonTable
           headline="Cash Offer vs. Traditional Listing"
-          subheadline="See why selling to Central Valley REI is often the best choice for Greenville homeowners who need to sell fast."
-          cashOfferLabel="Central Valley REI Cash Offer"
+          subheadline={`See why selling to ${siteConfig.siteName} is often the best choice for Greenville homeowners who need to sell fast.`}
+          cashOfferLabel={`${siteConfig.siteName} Cash Offer`}
           traditionalLabel="Traditional Agent Listing"
           rows={COMPARISON_ROWS}
         />
@@ -132,7 +137,7 @@ export default async function OurProcessPage() {
           phone={siteConfig.phone}
         />
       </main>
-      <SiteFooter config={siteConfig} navItems={NAV_ITEMS} />
+      <SiteFooter config={siteConfig} navItems={navItems} />
     </>
   );
 }

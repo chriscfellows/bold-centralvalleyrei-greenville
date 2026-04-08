@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SiteHeader, SiteFooter } from "@boldstreet/shared-layout";
-import { SITE_CONFIG, NAV_ITEMS } from "@/config/site";
+import { getNavItems } from "@/config/site";
 import { getSiteConfig } from "@/lib/getSiteConfig";
 
 export const revalidate = 600;
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteConfig = await getSiteConfig();
+  const navItems = getNavItems(siteConfig.siteName);
   // Only generate metadata if this is a realtor-type client
   if (siteConfig.companyType !== "realtor") {
     return { robots: { index: false, follow: false } };
@@ -20,6 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function DisclosuresPage() {
   const siteConfig = await getSiteConfig();
+  const navItems = getNavItems(siteConfig.siteName);
 
   // Only render for realtor-type clients — return 404 for cash buyers
   if (siteConfig.companyType !== "realtor") {
@@ -37,7 +39,7 @@ export default async function DisclosuresPage() {
 
   return (
     <>
-      <SiteHeader config={siteConfig} navItems={NAV_ITEMS} currentPath="/disclosures" />
+      <SiteHeader config={siteConfig} navItems={navItems} currentPath="/disclosures" />
       <main className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 prose prose-lg max-w-none prose-headings:text-[#0F172A] prose-a:text-[#E8521A]">
           <h1>{companyName} &mdash; Licensing, Disclosures, and Cash Buyer Relationships</h1>
@@ -109,7 +111,7 @@ export default async function DisclosuresPage() {
           </p>
         </div>
       </main>
-      <SiteFooter config={siteConfig} navItems={NAV_ITEMS} />
+      <SiteFooter config={siteConfig} navItems={navItems} />
     </>
   );
 }

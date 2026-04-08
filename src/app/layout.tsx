@@ -13,33 +13,38 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { UTMCapture } from "@/lib/UTMCapture";
 import { getSiteConfig } from "@/lib/getSiteConfig";
+import { getSEO } from "@/config/site";
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://sellgreenvillehomefast.com"),
-  title: {
-    default: "Sell My House Fast Greenville SC | Cash Offer in 24 Hours | Central Valley REI",
-    template: "%s | Central Valley REI",
-  },
-  description:
-    "Get a fair cash offer for your Greenville SC home in 24 hours. Central Valley REI buys houses as-is — no repairs, no fees, no commissions. Close in as little as 7 days.",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    siteName: "Central Valley REI",
-    url: "https://sellgreenvillehomefast.com",
-  },
-  twitter: {
-    card: "summary_large_image",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getSiteConfig();
+  const seo = getSEO(config.siteName);
+
+  return {
+    metadataBase: new URL(`https://${config.domain}`),
+    title: {
+      default: seo.home.title,
+      template: `%s | ${config.siteName}`,
+    },
+    description: seo.home.description,
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      siteName: config.siteName,
+      url: `https://${config.domain}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+    },
+    robots: {
       index: true,
       follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
     },
-  },
-};
+  };
+}
 
 export default async function RootLayout({
   children,

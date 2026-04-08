@@ -9,7 +9,7 @@
 import type { Metadata } from "next";
 import { SiteHeader, SiteFooter, BlogCard, CTASection } from "@boldstreet/shared-layout";
 import { getBlogPosts } from "@boldstreet/shared";
-import { SITE_CONFIG, NAV_ITEMS, SEO, WEBSITE_ID } from "@/config/site";
+import { SITE_CONFIG, getNavItems, SEO, WEBSITE_ID } from "@/config/site";
 import { getSiteConfig } from "@/lib/getSiteConfig";
 
 export const metadata: Metadata = {
@@ -22,12 +22,13 @@ export const dynamic = "force-dynamic";
 
 export default async function BlogPage() {
   const [posts, siteConfig] = await Promise.all([getBlogPosts(WEBSITE_ID()), getSiteConfig()]);
+  const navItems = getNavItems(siteConfig.siteName);
 
   const [featuredPost, ...remainingPosts] = posts;
 
   return (
     <>
-      <SiteHeader config={siteConfig} navItems={NAV_ITEMS} currentPath="/blog" />
+      <SiteHeader config={siteConfig} navItems={navItems} currentPath="/blog" />
       <main>
         <section className="bg-[#0F172A] text-white py-16">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
@@ -89,7 +90,7 @@ export default async function BlogPage() {
           phone={siteConfig.phone}
         />
       </main>
-      <SiteFooter config={siteConfig} navItems={NAV_ITEMS} />
+      <SiteFooter config={siteConfig} navItems={navItems} />
     </>
   );
 }

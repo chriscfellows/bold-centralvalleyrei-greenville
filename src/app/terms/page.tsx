@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SiteHeader, SiteFooter } from "@boldstreet/shared-layout";
-import { SITE_CONFIG, NAV_ITEMS } from "@/config/site";
+import { getNavItems } from "@/config/site";
 import { getSiteConfig } from "@/lib/getSiteConfig";
 
 export const metadata: Metadata = {
@@ -12,10 +12,11 @@ export const revalidate = 600;
 
 export default async function TermsPage() {
   const siteConfig = await getSiteConfig();
+  const navItems = getNavItems(siteConfig.siteName);
   
   return (
     <>
-      <SiteHeader config={siteConfig} navItems={NAV_ITEMS} currentPath="/terms" />
+      <SiteHeader config={siteConfig} navItems={navItems} currentPath="/terms" />
       <main className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 prose prose-lg max-w-none prose-headings:text-[#0F172A] prose-a:text-[#E8521A]">
           <h1>Terms of Use</h1>
@@ -71,7 +72,7 @@ export default async function TermsPage() {
           </p>
         </div>
       </main>
-      <SiteFooter config={siteConfig} navItems={NAV_ITEMS} />
+      <SiteFooter config={siteConfig} navItems={navItems} />
     </>
   );
 }

@@ -1,21 +1,25 @@
 import type { Metadata } from "next";
 import { SiteHeader, SiteFooter } from "@boldstreet/shared-layout";
-import { SITE_CONFIG, NAV_ITEMS } from "@/config/site";
+import { getNavItems } from "@/config/site";
 import { getSiteConfig } from "@/lib/getSiteConfig";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy | " + SITE_CONFIG.siteName,
-  robots: { index: false, follow: false },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getSiteConfig();
+  return {
+    title: `Privacy Policy | ${config.siteName}`,
+    robots: { index: false, follow: false },
+  };
+}
 
 export const revalidate = 600;
 
 export default async function PrivacyPage() {
   const siteConfig = await getSiteConfig();
+  const navItems = getNavItems(siteConfig.siteName);
   
   return (
     <>
-      <SiteHeader config={siteConfig} navItems={NAV_ITEMS} currentPath="/privacy" />
+      <SiteHeader config={siteConfig} navItems={navItems} currentPath="/privacy" />
       <main className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 prose prose-lg max-w-none prose-headings:text-[#0F172A] prose-a:text-[#E8521A]">
           <h1>Privacy Policy</h1>
@@ -75,7 +79,7 @@ export default async function PrivacyPage() {
           </p>
         </div>
       </main>
-      <SiteFooter config={siteConfig} navItems={NAV_ITEMS} />
+      <SiteFooter config={siteConfig} navItems={navItems} />
     </>
   );
 }

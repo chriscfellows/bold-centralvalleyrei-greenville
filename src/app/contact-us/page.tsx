@@ -9,7 +9,7 @@ import {
   LeadCaptureForm,
   CTASection,
 } from "@boldstreet/shared-layout";
-import { SITE_CONFIG, NAV_ITEMS, SEO, WEBSITE_ID } from "@/config/site";
+import { SITE_CONFIG, getNavItems, SEO, WEBSITE_ID } from "@/config/site";
 import { getSiteConfig } from "@/lib/getSiteConfig";
 
 export const metadata: Metadata = {
@@ -31,10 +31,11 @@ const CONTACT_REASONS = [
 
 export default async function ContactUsPage() {
   const siteConfig = await getSiteConfig();
+  const navItems = getNavItems(siteConfig.siteName);
 
   return (
     <>
-      <SiteHeader config={siteConfig} navItems={NAV_ITEMS} currentPath="/contact-us" />
+      <SiteHeader config={siteConfig} navItems={navItems} currentPath="/contact-us" />
       <main>
         <section className="bg-[#0F172A] text-white py-16 lg:py-20">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
@@ -113,7 +114,7 @@ export default async function ContactUsPage() {
           phone={siteConfig.phone}
         />
       </main>
-      <SiteFooter config={siteConfig} navItems={NAV_ITEMS} />
+      <SiteFooter config={siteConfig} navItems={navItems} />
     </>
   );
 }

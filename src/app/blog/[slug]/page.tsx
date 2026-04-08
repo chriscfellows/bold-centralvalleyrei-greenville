@@ -8,7 +8,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SiteHeader, SiteFooter, BlogPostContent, CTASection } from "@boldstreet/shared-layout";
 import { getBlogPost, getBlogPosts } from "@boldstreet/shared";
-import { SITE_CONFIG, NAV_ITEMS, WEBSITE_ID } from "@/config/site";
+import { SITE_CONFIG, getNavItems, WEBSITE_ID } from "@/config/site";
 import { getSiteConfig } from "@/lib/getSiteConfig";
 
 interface BlogPostPageProps {
@@ -19,19 +19,19 @@ interface BlogPostPageProps {
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const post = await getBlogPost(WEBSITE_ID(), params.slug);
+  const [post, config] = await Promise.all([getBlogPost(WEBSITE_ID(), params.slug), getSiteConfig()]);
   if (!post) return {};
 
   return {
-    title: `${post.title} | Central Valley REI Greenville`,
+    title: `${post.title} | ${config.siteName} ${config.metroArea}`,
     description: post.metaDescription || post.excerpt || undefined,
     alternates: {
-      canonical: `https://sellgreenvillehomefast.com/blog/${post.slug}`,
+      canonical: `https://${config.domain}/blog/${post.slug}`,
     },
     openGraph: {
       title: post.title,
       description: post.metaDescription || post.excerpt || undefined,
-      url: `https://sellgreenvillehomefast.com/blog/${post.slug}`,
+      url: `https://${config.domain}/blog/${post.slug}`,
       images: post.heroImageUrl ? [{ url: post.heroImageUrl }] : undefined,
     },
   };
@@ -44,6 +44,7 @@ export async function generateStaticParams() {
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const [post, siteConfig] = await Promise.all([getBlogPost(WEBSITE_ID(), params.slug), getSiteConfig()]);
+  const navItems = getNavItems(siteConfig.siteName);
   if (!post) notFound();
 
   // Schema.org Article structured data
@@ -56,16 +57,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     dateModified: post.updatedAt?.toISOString(),
     author: {
       "@type": "Organization",
-      name: "Central Valley REI Greenville Cash Buyers",
+      name: `${siteConfig.siteName} ${siteConfig.metroArea} Cash Buyers`,
     },
     publisher: {
       "@type": "Organization",
-      name: "Central Valley REI Greenville Cash Buyers",
-      url: "https://sellgreenvillehomefast.com",
+      name: `${siteConfig.siteName} ${siteConfig.metroArea} Cash Buyers`,
+      url: `https://${siteConfig.domain}`,
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://sellgreenvillehomefast.com/blog/${post.slug}`,
+      "@id": `https://${siteConfig.domain}/blog/${post.slug}`,
     },
   };
 
@@ -75,7 +76,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <SiteHeader config={siteConfig} navItems={NAV_ITEMS} currentPath="/blog" />
+      <SiteHeader config={siteConfig} navItems={navItems} currentPath="/blog" />
       <main>
         <BlogPostContent
           content={post.content}
@@ -91,7 +92,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           phone={siteConfig.phone}
         />
       </main>
-      <SiteFooter config={siteConfig} navItems={NAV_ITEMS} />
+      <SiteFooter config={siteConfig} navItems={navItems} />
     </>
   );
 }
