@@ -1,7 +1,7 @@
 /**
  * getSiteConfig — Server-side helper.
  * Merges the static SITE_CONFIG with dynamic values from BLP's websites table
- * and the clients table (for company_type).
+ * and the clients table (for company_type and disclosure fields).
  *
  * No in-memory caching — changes in BLP admin are reflected on the next
  * page request without requiring a redeploy.
@@ -20,10 +20,11 @@ export async function getSiteConfig(): Promise<SiteConfig> {
   try {
     const websiteConfig = await getWebsiteConfig();
 
-    // Fetch company_type from the clients table via the website's clientId
+    // Fetch client data (company_type + disclosure fields) from the clients table
     let companyType = SITE_CONFIG.companyType;
+    let clientConfig = null;
     if (websiteConfig?.clientId) {
-      const clientConfig = await getClientConfig(websiteConfig.clientId);
+      clientConfig = await getClientConfig(websiteConfig.clientId);
       companyType = clientConfig?.companyType ?? SITE_CONFIG.companyType;
     }
 
@@ -42,6 +43,14 @@ export async function getSiteConfig(): Promise<SiteConfig> {
       metaPixelId: websiteConfig?.metaPixelId ?? SITE_CONFIG.metaPixelId,
       // Company type — from clients table, determines badge sublabel (realtor vs cash_buyer)
       companyType,
+      // Disclosure fields — from clients table (realtor-type clients only)
+      owner: clientConfig?.owner ?? undefined,
+      ownerLicense: clientConfig?.ownerLicense ?? undefined,
+      licenseState: clientConfig?.licenseState ?? undefined,
+      disclosureAgency: clientConfig?.disclosureAgency ?? undefined,
+      disclosureCashbuyer: clientConfig?.disclosureCashbuyer ?? undefined,
+      brokerageName: clientConfig?.brokerageName ?? undefined,
+      brokerageLicense: clientConfig?.brokerageLicense ?? undefined,
     };
   } catch {
     // On any DB error, return static config as fallback

@@ -19,6 +19,14 @@ export interface SiteConfig {
   faviconUrl?: string;
   primaryColor?: string;
   companyType?: string;
+  // Disclosure fields (realtor-type clients only)
+  owner?: string;
+  ownerLicense?: string;
+  licenseState?: string;
+  disclosureAgency?: string;
+  disclosureCashbuyer?: string;
+  brokerageName?: string;
+  brokerageLicense?: string;
 }
 
 export interface NavItem {

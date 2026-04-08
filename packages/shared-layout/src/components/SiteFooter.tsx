@@ -90,6 +90,9 @@ export function SiteFooter({ config, navItems }: SiteFooterProps) {
           <div className="flex gap-6">
             <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="/terms" className="hover:text-white transition-colors">Terms of Use</a>
+            {config.companyType === "realtor" && (
+              <a href="/disclosures" className="hover:text-white transition-colors">Disclosures</a>
+            )}
             <a href="/blog" className="hover:text-white transition-colors">Blog</a>
           </div>
         </div>
