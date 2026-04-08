@@ -27,13 +27,13 @@ export default async function DisclosuresPage() {
   }
 
   const companyName = siteConfig.siteName;
-  const owner = siteConfig.owner ?? "[Owner Name]";
-  const ownerLicense = siteConfig.ownerLicense ?? "[License #]";
-  const licenseState = siteConfig.licenseState ?? "[State]";
+  const owner = siteConfig.owner ?? "";
+  const ownerLicense = siteConfig.ownerLicense ?? "";
+  const licenseState = siteConfig.licenseState ?? "";
   const disclosureAgency = siteConfig.disclosureAgency ?? "";
   const disclosureCashbuyer = siteConfig.disclosureCashbuyer ?? "";
-  const brokerageName = siteConfig.brokerageName ?? "[Brokerage Name]";
-  const brokerageLicense = siteConfig.brokerageLicense ?? "[Broker License #]";
+  const brokerageName = siteConfig.brokerageName ?? "";
+  const brokerageLicense = siteConfig.brokerageLicense ?? "";
 
   return (
     <>
@@ -44,11 +44,14 @@ export default async function DisclosuresPage() {
 
           <h2>About {companyName}</h2>
           <p>
-            {companyName} is a licensed real estate team led by {owner} ({ownerLicense}),
-            affiliated with {brokerageName} (Broker {brokerageLicense}). {companyName} provides
-            real estate brokerage services, including facilitating the sale of residential
-            properties through multiple channels: direct cash buyer connections,
-            preparation-for-sale services, and traditional MLS listings.
+            {companyName} is a licensed real estate team
+            {owner && ` led by ${owner}`}
+            {ownerLicense && ` (${ownerLicense})`},
+            {brokerageName && ` affiliated with ${brokerageName}`}
+            {brokerageLicense && ` (Broker ${brokerageLicense})`}.
+            {" "}{companyName} provides real estate brokerage services, including facilitating
+            the sale of residential properties through multiple channels: direct cash buyer
+            connections, preparation-for-sale services, and traditional MLS listings.
           </p>
 
           <h2>Cash Buyer Relationship Disclosure</h2>
@@ -56,9 +59,9 @@ export default async function DisclosuresPage() {
             When you request a cash offer through this website, {companyName} may connect you
             with independent, pre-vetted third-party real estate investors (&ldquo;Cash
             Buyers&rdquo;) from our buyer network. {companyName} does not typically purchase
-            properties directly as a principal. However, {owner}, affiliated entities, or
-            members of the {companyName} team may, from time to time, purchase properties as
-            principals for investment purposes.{disclosureCashbuyer ? ` ${disclosureCashbuyer}` : ""}
+            properties directly as a principal.
+            {owner && ` However, ${owner}, affiliated entities, or members of the ${companyName} team may, from time to time, purchase properties as principals for investment purposes.`}
+            {disclosureCashbuyer && ` ${disclosureCashbuyer}`}
           </p>
 
           <h2>Resale and Profit Disclosure</h2>
@@ -78,15 +81,16 @@ export default async function DisclosuresPage() {
             Cash Buyer in connection with the transaction. This compensation does not reduce the
             cash offer you receive. The amount or rate of real estate commissions is not fixed by
             law and is set by each broker individually. All compensation arrangements will be
-            disclosed to you in writing as required by {licenseState} law.
+            disclosed to you in writing
+            {licenseState ? ` as required by ${licenseState} law` : ""}.
           </p>
 
           <h2>Agency Relationship</h2>
           <p>
             When facilitating a cash sale, {companyName} acts as the buyer&rsquo;s representative
-            unless otherwise disclosed in writing.{disclosureAgency ? ` ${disclosureAgency}` : ""}{" "}
-            If {owner} or an affiliated entity is the buyer, a dual agency or principal disclosure
-            will be provided as required by law.
+            unless otherwise disclosed in writing.
+            {disclosureAgency && ` ${disclosureAgency}`}
+            {owner && ` If ${owner} or an affiliated entity is the buyer, a dual agency or principal disclosure will be provided as required by law.`}
           </p>
 
           <h2>No Legal, Tax, or Investment Advice</h2>
@@ -99,7 +103,9 @@ export default async function DisclosuresPage() {
 
           <hr className="my-8" />
           <p className="text-sm text-gray-500">
-            {owner} | {ownerLicense} | {brokerageName} {brokerageLicense} | Equal Housing
+            {[owner, ownerLicense, brokerageName, brokerageLicense].filter(Boolean).join(" | ")}
+            {(owner || ownerLicense || brokerageName || brokerageLicense) && " | "}
+            Equal Housing
           </p>
         </div>
       </main>

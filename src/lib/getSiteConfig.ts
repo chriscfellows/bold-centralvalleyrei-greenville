@@ -1,7 +1,7 @@
 /**
  * getSiteConfig — Server-side helper.
  * Merges the static SITE_CONFIG with dynamic values from BLP's websites table
- * and the clients table (for company_type and disclosure fields).
+ * and the clients table (for company name, company_type, and disclosure fields).
  *
  * No in-memory caching — changes in BLP admin are reflected on the next
  * page request without requiring a redeploy.
@@ -20,16 +20,20 @@ export async function getSiteConfig(): Promise<SiteConfig> {
   try {
     const websiteConfig = await getWebsiteConfig();
 
-    // Fetch client data (company_type + disclosure fields) from the clients table
+    // Fetch client data (company name, company_type, disclosure fields) from the clients table
     let companyType = SITE_CONFIG.companyType;
+    let siteName = SITE_CONFIG.siteName;
     let clientConfig = null;
     if (websiteConfig?.clientId) {
       clientConfig = await getClientConfig(websiteConfig.clientId);
       companyType = clientConfig?.companyType ?? SITE_CONFIG.companyType;
+      siteName = clientConfig?.name ?? SITE_CONFIG.siteName;
     }
 
     return {
       ...SITE_CONFIG,
+      // Company name — from clients.name in DB
+      siteName,
       // Phone — DB-driven with static fallback
       phone: websiteConfig?.phone ?? SITE_CONFIG.phone,
       // S3 asset URLs
