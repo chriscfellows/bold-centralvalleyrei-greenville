@@ -3,10 +3,13 @@ import { SiteHeader, SiteFooter } from "@boldstreet/shared-layout";
 import { getNavItems } from "@/config/site";
 import { getSiteConfig } from "@/lib/getSiteConfig";
 
-export const metadata: Metadata = {
-  title: "Terms of Use | " + SITE_CONFIG.siteName,
-  robots: { index: false, follow: false },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await getSiteConfig();
+  return {
+    title: `Terms of Use | ${config.siteName}`,
+    robots: { index: false, follow: false },
+  };
+}
 
 export const revalidate = 600;
 
