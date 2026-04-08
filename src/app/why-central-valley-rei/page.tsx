@@ -11,7 +11,7 @@ import {
   CTASection,
   LeadCaptureForm,
 } from "@boldstreet/shared-layout";
-import { SITE_CONFIG, getNavItems, COMPARISON_ROWS, getSEO, WEBSITE_ID } from "@/config/site";
+import { SITE_CONFIG, getNavItems, getWhySlug, COMPARISON_ROWS, getSEO, WEBSITE_ID } from "@/config/site";
 import { getSiteConfig } from "@/lib/getSiteConfig";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -66,7 +66,7 @@ export default async function WhyCompanyPage() {
 
   return (
     <>
-      <SiteHeader config={siteConfig} navItems={navItems} currentPath="/why-central-valley-rei" />
+      <SiteHeader config={siteConfig} navItems={navItems} currentPath={getWhySlug(siteName)} />
       <main>
         <section className="bg-[#0F172A] text-white py-16 lg:py-24">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">

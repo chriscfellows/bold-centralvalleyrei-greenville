@@ -27,11 +27,19 @@ export function WEBSITE_ID(): number {
   return parseInt(process.env.WEBSITE_ID || "5");
 }
 
+/**
+ * Derives the "why" page slug from client.name.
+ * e.g., "Central Valley REI" → "/why-central-valley-rei"
+ */
+export function getWhySlug(siteName: string): string {
+  return "/why-" + siteName.toLowerCase().replace(/\s+/g, "-");
+}
+
 export function getNavItems(siteName: string): NavItem[] {
   return [
     { label: "Home", href: "/" },
     { label: "Our Process", href: "/our-process" },
-    { label: `Why ${siteName}`, href: "/why-central-valley-rei" },
+    { label: `Why ${siteName}`, href: getWhySlug(siteName) },
     { label: "Contact", href: "/contact-us" },
     { label: "Blog", href: "/blog" },
   ];
@@ -153,7 +161,7 @@ export function getSEO(siteName: string) {
       title: `Why ${siteName} | Direct Cash Home Buyers in Greenville SC`,
       description:
         `Discover why Greenville SC homeowners choose ${siteName} over traditional agents and investors. Direct cash buyer, fair offers, zero fees, and a guaranteed closing.`,
-      canonical: "https://sellgreenvillehomefast.com/why-central-valley-rei",
+      canonical: `https://${SITE_CONFIG.domain}${getWhySlug(siteName)}`,
     },
     contactUs: {
       title: `Contact Us | Get Your Cash Offer | ${siteName} Greenville SC`,
