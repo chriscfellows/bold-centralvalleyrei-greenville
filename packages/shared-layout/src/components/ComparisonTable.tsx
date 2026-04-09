@@ -41,7 +41,7 @@ export function ComparisonTable({
             {headline}
           </h2>
           {subheadline && (
-            <p className="mt-3 text-gray-500 max-w-xl mx-auto">{subheadline}</p>
+            <p className="mt-3 text-gray-500">{subheadline}</p>
           )}
         </div>
 
