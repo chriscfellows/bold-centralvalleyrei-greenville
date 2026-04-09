@@ -159,10 +159,11 @@ export default async function HomePage() {
         />
 
         <ComparisonTable
-          headline={`Why Sell to ${siteName} vs. Listing with an Agent?`}
-          cashOfferLabel={`Selling to ${siteName} (Cash Offer)`}
-          traditionalLabel="Traditional Agent Listing"
+          headline="Sell to a Cash Buyer in the Network vs. List on the Market"
+          cashOfferLabel="Sell to a Cash Buyer in the Network"
+          traditionalLabel="List on the Market"
           rows={COMPARISON_ROWS}
+          closingText="It all depends on your situation, your goals, and what matters most to you. We're here to help you compare your options and choose the path that works best for you."
         />
 
         <AboutSection
@@ -185,7 +186,7 @@ export default async function HomePage() {
 
         <CTASection
           headline="Ready to Sell Your Greenville Home Fast?"
-          subheadline="Get a fair, no-obligation cash offer in 24 hours. No repairs. No fees. No commissions. Close on your schedule."
+          subheadline="Every homeowner's situation is different. Some want speed, simplicity, and certainty. Others are willing to go through the full sales process in hopes of getting top market value. We help you compare both options so you can choose what works best for you."
           ctaText="Get My Free Cash Offer"
           ctaHref="/contact-us"
           phone={siteConfig.phone}

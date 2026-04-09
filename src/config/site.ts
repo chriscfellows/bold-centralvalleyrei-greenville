@@ -91,12 +91,13 @@ export const SITUATIONS: Situation[] = [
 ];
 
 export const COMPARISON_ROWS: ComparisonRow[] = [
-  { feature: "Closing Time", cashOffer: "As little as 7 days", traditional: "30–90+ days" },
-  { feature: "Commissions / Fees", cashOffer: "None — we pay all costs", traditional: "6% + closing costs" },
-  { feature: "Repairs Required", cashOffer: "None — we buy as-is", traditional: "Often required before listing" },
-  { feature: "Appraisal / Financing", cashOffer: "No appraisal needed", traditional: "Contingent on appraisal & financing" },
-  { feature: "Showings", cashOffer: "One quick visit from us", traditional: "Multiple open houses" },
-  { feature: "Closing Guarantee", cashOffer: "YES — guaranteed", traditional: "NO — deal can fall through" },
+  { feature: "Best For", cashOffer: "Homeowners who want a faster, simpler sale", traditional: "Homeowners who want to test the market for the highest possible price" },
+  { feature: "Closing Time", cashOffer: "As little as 7 days", traditional: "Typically 30 to 90+ days" },
+  { feature: "Commissions / Fees", cashOffer: "No agent commissions. Terms depend on the buyer and transaction structure.", traditional: "Agent commissions plus typical closing costs" },
+  { feature: "Repairs Required", cashOffer: "Often sold as-is", traditional: "Repairs, cleaning, and prep are often needed" },
+  { feature: "Appraisal / Financing", cashOffer: "May avoid appraisal and lender delays when working with cash buyers", traditional: "Often depends on buyer financing and appraisal" },
+  { feature: "Showings", cashOffer: "Usually minimal property access", traditional: "Multiple showings and open houses are common" },
+  { feature: "Certainty", cashOffer: "More speed and convenience, depending on the buyer", traditional: "Potential for higher market value, but with more time and uncertainty" },
 ];
 
 export function getHeroContent(siteName: string) {

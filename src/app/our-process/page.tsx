@@ -69,7 +69,7 @@ export default async function OurProcessPage() {
 
         <ProcessSteps
           headline="Our Simple 3-Step Process"
-          subheadline="We have streamlined the process to make selling your home as easy and stress-free as possible."
+          subheadline="Every homeowner's situation is different. Some want speed, simplicity, and certainty. Others are willing to go through the full sales process in hopes of getting top market value. We help you compare both options so you can choose what works best for you."
           steps={PROCESS_STEPS}
           variant="light"
         />
@@ -104,11 +104,12 @@ export default async function OurProcessPage() {
         </section>
 
         <ComparisonTable
-          headline="Cash Offer vs. Traditional Listing"
-          subheadline={`See why selling to ${siteConfig.siteName} is often the best choice for Greenville homeowners who need to sell fast.`}
-          cashOfferLabel={`${siteConfig.siteName} Cash Offer`}
-          traditionalLabel="Traditional Agent Listing"
+          headline="Sell to a Cash Buyer in the Network vs. List on the Market"
+          subheadline="Every homeowner's situation is different. Some want speed, simplicity, and certainty. Others are willing to go through the full sales process in hopes of getting top market value. We help you compare both options so you can choose what works best for you."
+          cashOfferLabel="Sell to a Cash Buyer in the Network"
+          traditionalLabel="List on the Market"
           rows={COMPARISON_ROWS}
+          closingText="It all depends on your situation, your goals, and what matters most to you. We're here to help you compare your options and choose the path that works best for you."
         />
 
         <section className="bg-[#F1F5F9] py-16 lg:py-24">
@@ -131,7 +132,7 @@ export default async function OurProcessPage() {
 
         <CTASection
           headline="Have Questions? We are Happy to Help."
-          subheadline="Our team is available to walk you through every step of the process."
+          subheadline="Every homeowner's situation is different. Some want speed, simplicity, and certainty. Others are willing to go through the full sales process in hopes of getting top market value. We help you compare both options so you can choose what works best for you."
           ctaText="Contact Us Today"
           ctaHref="/contact-us"
           phone={siteConfig.phone}

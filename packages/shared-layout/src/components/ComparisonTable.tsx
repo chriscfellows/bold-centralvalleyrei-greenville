@@ -11,24 +11,27 @@ interface ComparisonTableProps {
   cashOfferLabel?: string;
   traditionalLabel?: string;
   rows: ComparisonRow[];
+  closingText?: string;
   variant?: "horizontal" | "vertical";
 }
 
 const DEFAULT_ROWS: ComparisonRow[] = [
-  { feature: "Closing Time", cashOffer: "As little as 7 days", traditional: "30-90+ days" },
-  { feature: "Commissions & Fees", cashOffer: "NONE", traditional: "6% + closing costs" },
-  { feature: "Repairs Needed", cashOffer: "NONE (We buy As-Is)", traditional: "Often required" },
-  { feature: "Financing Contingency", cashOffer: "NONE (Cash)", traditional: "Yes (Risk of fall-through)" },
-  { feature: "Showings", cashOffer: "One quick visit", traditional: "Multiple open houses" },
-  { feature: "Closing Guarantee", cashOffer: "YES", traditional: "NO" },
+  { feature: "Best For", cashOffer: "Homeowners who want a faster, simpler sale", traditional: "Homeowners who want to test the market for the highest possible price" },
+  { feature: "Closing Time", cashOffer: "As little as 7 days", traditional: "Typically 30 to 90+ days" },
+  { feature: "Commissions / Fees", cashOffer: "No agent commissions. Terms depend on the buyer and transaction structure.", traditional: "Agent commissions plus typical closing costs" },
+  { feature: "Repairs Required", cashOffer: "Often sold as-is", traditional: "Repairs, cleaning, and prep are often needed" },
+  { feature: "Appraisal / Financing", cashOffer: "May avoid appraisal and lender delays when working with cash buyers", traditional: "Often depends on buyer financing and appraisal" },
+  { feature: "Showings", cashOffer: "Usually minimal property access", traditional: "Multiple showings and open houses are common" },
+  { feature: "Certainty", cashOffer: "More speed and convenience, depending on the buyer", traditional: "Potential for higher market value, but with more time and uncertainty" },
 ];
 
 export function ComparisonTable({
   headline,
-  subheadline = "See why selling to us is often the best choice for homeowners who need to sell fast.",
-  cashOfferLabel = "Cash Offer",
-  traditionalLabel = "Traditional Agent",
+  subheadline = "Every homeowner's situation is different. Some want speed, simplicity, and certainty. Others are willing to go through the full sales process in hopes of getting top market value. We help you compare both options so you can choose what works best for you.",
+  cashOfferLabel = "Sell to a Cash Buyer in the Network",
+  traditionalLabel = "List on the Market",
   rows = DEFAULT_ROWS,
+  closingText,
 }: ComparisonTableProps) {
   return (
     <section className="bg-white py-16 lg:py-24" aria-labelledby="comparison-heading">
@@ -77,6 +80,12 @@ export function ComparisonTable({
             </tbody>
           </table>
         </div>
+
+        {closingText && (
+          <p className="mt-8 text-center text-gray-500 max-w-2xl mx-auto">
+            {closingText}
+          </p>
+        )}
       </div>
     </section>
   );

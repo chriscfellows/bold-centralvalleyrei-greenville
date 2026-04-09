@@ -101,11 +101,12 @@ export default async function WhyCompanyPage() {
         </section>
 
         <ComparisonTable
-          headline={`${siteName} vs. Traditional Listing`}
-          subheadline="A side-by-side look at what you can expect from each path."
-          cashOfferLabel={`${siteName} Cash Offer`}
-          traditionalLabel="Traditional Agent Listing"
+          headline="Sell to a Cash Buyer in the Network vs. List on the Market"
+          subheadline="Every homeowner's situation is different. Some want speed, simplicity, and certainty. Others are willing to go through the full sales process in hopes of getting top market value. We help you compare both options so you can choose what works best for you."
+          cashOfferLabel="Sell to a Cash Buyer in the Network"
+          traditionalLabel="List on the Market"
           rows={COMPARISON_ROWS}
+          closingText="It all depends on your situation, your goals, and what matters most to you. We're here to help you compare your options and choose the path that works best for you."
         />
 
         <AboutSection
@@ -138,7 +139,7 @@ export default async function WhyCompanyPage() {
 
         <CTASection
           headline="Have Questions? We are Happy to Help."
-          subheadline="Our team is available to answer any questions you have about the process."
+          subheadline="Every homeowner's situation is different. Some want speed, simplicity, and certainty. Others are willing to go through the full sales process in hopes of getting top market value. We help you compare both options so you can choose what works best for you."
           ctaText="Contact Us Today"
           ctaHref="/contact-us"
           phone={siteConfig.phone}
